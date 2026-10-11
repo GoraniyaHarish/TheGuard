@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TheGuard - AI Fraud Message Shield</title>
+<style>
+  :root{--ink:#101828;--muted:#667085;--line:#e4e7ec;--bg:#f7f8fa;--brand:#1d4ed8;--brand-d:#1e3a8a;
+        --danger:#b42318;--danger-bg:#fef3f2;--warn:#b54708;--warn-bg:#fffaeb;--ok:#027a48;--ok-bg:#ecfdf3;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--ink);line-height:1.55}
+  .wrap{max-width:960px;margin:0 auto;padding:28px 20px 60px}
+  header{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:2px solid var(--line);margin-bottom:24px}
+  .logo{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,#1d4ed8,#0e7490);
+        display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:22px;flex:0 0 auto}
+  h1{font-size:24px;margin:0;letter-spacing:-.4px}
+  .sub{color:var(--muted);font-size:13.5px;margin-top:2px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px;
+        box-shadow:0 1px 3px rgba(16,24,40,.04)}
+  .label{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:9px}
+  textarea{width:100%;min-height:104px;border:1px solid var(--line);border-radius:10px;padding:13px 14px;
+           font-size:15px;font-family:inherit;resize:vertical;background:#fcfcfd}
+  .row{display:flex;gap:11px;flex-wrap:wrap;align-items:center;margin-top:13px}
+  button{border:0;border-radius:9px;padding:11px 22px;font-size:14.5px;font-weight:650;cursor:pointer;
+         background:var(--brand);color:#fff}
+  button.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .verdict{border-radius:12px;padding:17px 19px;margin-bottom:16px;border:1px solid}
+  .v-scam{background:var(--danger-bg);border-color:#fecdca;color:var(--danger)}
+  .v-susp{background:var(--warn-bg);border-color:#fedf89;color:var(--warn)}
+  .v-ok{background:var(--ok-bg);border-color:#abefc6;color:var(--ok)}
+  .v-title{font-size:19px;font-weight:800;letter-spacing:-.2px}
+  .v-sub{font-size:14px;margin-top:5px;color:#475467}
+  .meter{height:9px;background:#eaecf0;border-radius:6px;overflow:hidden;margin-top:13px}
+  .meter>i{display:block;height:100%;border-radius:6px}
+  .flag{border-left:3px solid #f04438;background:#fffbfa;padding:11px 14px;border-radius:0 9px 9px 0;margin-bottom:9px}
+  .flag b{font-size:14.5px}
+  .flag p{margin:5px 0 0;font-size:13.5px;color:#475467}
+  .ev{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;background:#f2f4f7;
+      padding:2px 7px;border-radius:5px;color:#344054;display:inline-block;margin-top:6px}
+  ol.steps{margin:8px 0 0;padding-left:21px;font-size:14.3px;color:#344054}
+  ol.steps li{margin-bottom:6px}
+  .trace{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.7px;background:#0f172a;color:#cbd5e1;
+         padding:15px 17px;border-radius:11px;white-space:pre-wrap;line-height:1.7}
+  .helpline{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+  .chip{background:#eff4ff;color:var(--brand-d);border:1px solid #d1e0ff;border-radius:8px;
+        padding:8px 13px;font-size:13.3px;font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line)}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);background:#fcfcfd}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+  .kpi .n{font-size:27px;font-weight:800;letter-spacing:-.7px;color:var(--brand-d)}
+  .kpi .t{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .foot{color:var(--muted);font-size:12.5px;text-align:center;margin-top:26px}
+  h2{font-size:17px;margin:0 0 12px;letter-spacing:-.2px}
+  h3{font-size:13px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin:20px 0 9px}
+  .badge{display:inline-block;background:#eff4ff;color:var(--brand-d);font-size:11.5px;font-weight:700;
+         padding:3px 9px;border-radius:6px;letter-spacing:.4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">S</div>
+    <div>
+      <h1>TheGuard</h1>
+      <div class="sub">AI fraud-message shield for first-time digital users &middot; SDG 16 &amp; SDG 1 &middot; ML + Agentic AI</div>
+    </div>
+  </header>
+
+  <div class="card">
+    <div class="label">Paste the suspicious SMS, WhatsApp or email message</div>
+    <textarea id="msg" placeholder="Example: Dear customer your KYC is expiring today your account will be blocked immediately click http://bit.ly/kyc-upd8"></textarea>
+    <div class="row">
+      <button onclick="analyze()">Check this message</button>
+      <button class="ghost" onclick="sample(0)">Try a scam sample</button>
+      <button class="ghost" onclick="sample(1)">Try a genuine sample</button>
+      <button class="ghost" id="langBtn" onclick="toggleLang()">Hinglish</button>
+    </div>
+  </div>
+
+  <div id="out"></div>
+
+  <div class="foot">TheGuard runs entirely on-device &middot; no message is stored or sent to any third party</div>
+</div>
+
+<script>
+const SAMPLES = [
+ "Dear customer your KYC is expiring today your account will be blocked immediately click http://bit.ly/kyc-upd8 and update pan card details",
+ "Rs 1500 debited from your account on 05-09-26 to grocery store. Available balance Rs 12450."
+];
+let lang = "en";
+function sample(i){ document.getElementById("msg").value = SAMPLES[i]; analyze(); }
+function toggleLang(){ lang = lang==="en"?"hi":"en";
+  document.getElementById("langBtn").textContent = lang==="en"?"Hinglish":"English"; }
+
+async function analyze(){
+  const message = document.getElementById("msg").value.trim();
+  if(!message){ document.getElementById("out").innerHTML=""; return; }
+  const r = await fetch("/analyze",{method:"POST",headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({message,lang})});
+  const d = await r.json();
+  render(d);
+}
+function cls(v){ return v==="SCAM"?"v-scam":(v==="SUSPICIOUS"||v==="BE CAREFUL")?"v-susp":"v-ok"; }
+function bar(v){ return v==="SCAM"?"#d92d20":(v==="SUSPICIOUS"||v==="BE CAREFUL")?"#f79009":"#12b76a"; }
+function render(d){
+  const flags = d.red_flags.map(f=>`
+    <div class="flag"><b>${f.flag}</b><p>${f.why}</p>
+    <div class="ev">found: &hellip;${f.evidence.replace(/</g,"&lt;")}&hellip;</div></div>`).join("")
+    || `<p style="color:#667085;font-size:14px">No fraud red flags detected in this message.</p>`;
+  const steps = d.next_steps.map(s=>`<li>${s}</li>`).join("");
+  document.getElementById("out").innerHTML = `
+  <div class="card">
+    <div class="verdict ${cls(d.verdict)}">
+      <div class="v-title">${d.verdict} &middot; ${(d.confidence*100).toFixed(1)}% confidence</div>
+      <div class="v-sub">${lang==="en"?d.headline:d.headline_hi}</div>
+      <div class="meter"><i style="width:${d.confidence*100}%;background:${bar(d.verdict)}"></i></div>
+    </div>
+    <h2>Why the agent flagged this</h2>
+    ${flags}
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>What you should do now</h2><ol class="steps">${steps}</ol></div>
+    <div class="card"><h2>Agent reasoning trace</h2>
+      <div class="trace">${d.reasoning_trace.join("\n")}</div>
+      <h3>Official help</h3>
+      <div class="helpline">
+        <span class="chip">Helpline ${d.helpline.number}</span>
+        <span class="chip">${d.helpline.portal}</span>
+        <span class="chip">Report SMS to ${d.helpline.report_sms}</span>
+      </div>
+    </div>
+  </div>`;
+}
+</script>
+</body>
+</html>

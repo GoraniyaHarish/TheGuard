@@ -1,0 +1,361 @@
+{
+  "chosen_model": "ensemble",
+  "models": {
+    "baseline": "TF-IDF(word 1-2 + char_wb 3-5) + LogisticRegression",
+    "hybrid": "TF-IDF + engineered scam-signal features + LogisticRegression",
+    "embeddings": "sentence-transformers/all-MiniLM-L6-v2 + LogisticRegression",
+    "ensemble": "mean(hybrid, embeddings)"
+  },
+  "corpus": {
+    "curated_fraud": 119,
+    "curated_legit": 104,
+    "hard_fraud": 43,
+    "hard_legit": 39,
+    "txn_legit": 45,
+    "public_fraud": 747,
+    "public_legit": 4827,
+    "total": 5924,
+    "total_fraud": 909,
+    "total_legit": 5015
+  },
+  "signals": [
+    "n_urls",
+    "has_shortener",
+    "has_susp_tld",
+    "has_apk_link",
+    "has_ip_url",
+    "has_nonsecure_link",
+    "has_bait_domain",
+    "has_brand_bait_domain",
+    "has_qr",
+    "has_phone",
+    "has_whatsapp_telegram",
+    "has_email",
+    "n_amounts",
+    "max_amount_log",
+    "has_big_money_word",
+    "digit_ratio",
+    "upper_ratio",
+    "n_exclam_cap",
+    "char_len_log",
+    "word_count_log",
+    "sig_otp_request",
+    "sig_otp_protective",
+    "sig_safety_advice",
+    "sig_txn_alert",
+    "sig_personal_info",
+    "sig_threat",
+    "sig_urgency",
+    "sig_money",
+    "sig_prize",
+    "sig_impersonation",
+    "sig_investment",
+    "sig_remote",
+    "sig_click_action",
+    "sig_verify_action",
+    "sig_generic_greeting",
+    "sig_callback",
+    "sig_no_reply"
+  ],
+  "cross_validation": {
+    "folds": 5,
+    "results": {
+      "baseline": {
+        "accuracy": 0.9865,
+        "precision": 0.9652,
+        "recall": 0.9461,
+        "f1": 0.9556,
+        "roc_auc": 0.9945,
+        "confusion_matrix": {
+          "tn": 4984,
+          "fp": 31,
+          "fn": 49,
+          "tp": 860
+        }
+      },
+      "hybrid": {
+        "accuracy": 0.9868,
+        "precision": 0.9653,
+        "recall": 0.9483,
+        "f1": 0.9567,
+        "roc_auc": 0.9961,
+        "confusion_matrix": {
+          "tn": 4984,
+          "fp": 31,
+          "fn": 47,
+          "tp": 862
+        }
+      },
+      "embeddings": {
+        "accuracy": 0.9656,
+        "precision": 0.8426,
+        "recall": 0.9538,
+        "f1": 0.8947,
+        "roc_auc": 0.9926,
+        "confusion_matrix": {
+          "tn": 4853,
+          "fp": 162,
+          "fn": 42,
+          "tp": 867
+        }
+      },
+      "ensemble": {
+        "accuracy": 0.9884,
+        "precision": 0.9656,
+        "recall": 0.9582,
+        "f1": 0.9619,
+        "roc_auc": 0.9972,
+        "confusion_matrix": {
+          "tn": 4984,
+          "fp": 31,
+          "fn": 38,
+          "tp": 871
+        }
+      }
+    }
+  },
+  "probe": {
+    "n": 43,
+    "results": {
+      "baseline": {
+        "accuracy": 0.9535,
+        "precision": 0.9259,
+        "recall": 1.0,
+        "f1": 0.9615,
+        "roc_auc": 0.9889,
+        "confusion_matrix": {
+          "tn": 16,
+          "fp": 2,
+          "fn": 0,
+          "tp": 25
+        }
+      },
+      "hybrid": {
+        "accuracy": 0.9302,
+        "precision": 0.9231,
+        "recall": 0.96,
+        "f1": 0.9412,
+        "roc_auc": 0.9778,
+        "confusion_matrix": {
+          "tn": 16,
+          "fp": 2,
+          "fn": 1,
+          "tp": 24
+        }
+      },
+      "embeddings": {
+        "accuracy": 0.8605,
+        "precision": 0.8065,
+        "recall": 1.0,
+        "f1": 0.8929,
+        "roc_auc": 0.9311,
+        "confusion_matrix": {
+          "tn": 12,
+          "fp": 6,
+          "fn": 0,
+          "tp": 25
+        }
+      },
+      "ensemble": {
+        "accuracy": 0.9767,
+        "precision": 0.9615,
+        "recall": 1.0,
+        "f1": 0.9804,
+        "roc_auc": 0.9867,
+        "confusion_matrix": {
+          "tn": 17,
+          "fp": 1,
+          "fn": 0,
+          "tp": 25
+        }
+      }
+    }
+  },
+  "signal_importance": [
+    {
+      "signal": "digit_ratio",
+      "description": "Unusually digit-heavy text",
+      "coefficient": 9.851
+    },
+    {
+      "signal": "char_len_log",
+      "description": "Message length",
+      "coefficient": 5.245
+    },
+    {
+      "signal": "n_urls",
+      "description": "Contains a link",
+      "coefficient": 4.007
+    },
+    {
+      "signal": "word_count_log",
+      "description": "Message length",
+      "coefficient": 3.599
+    },
+    {
+      "signal": "sig_txn_alert",
+      "description": "Reads like a genuine bank transaction alert (balance, reference number, 'not you?')",
+      "coefficient": -3.411
+    },
+    {
+      "signal": "sig_callback",
+      "description": "Asks you to call a number / toll-free line",
+      "coefficient": 2.858
+    },
+    {
+      "signal": "sig_investment",
+      "description": "Promises guaranteed/high income or investment returns",
+      "coefficient": 2.519
+    },
+    {
+      "signal": "sig_prize",
+      "description": "Bait about a prize, lottery or 'free' gift",
+      "coefficient": 2.468
+    },
+    {
+      "signal": "sig_remote",
+      "description": "Pushes remote-access or app installation",
+      "coefficient": 2.406
+    },
+    {
+      "signal": "has_nonsecure_link",
+      "description": "Link is plain http:// (not secure)",
+      "coefficient": 2.393
+    },
+    {
+      "signal": "sig_money",
+      "description": "Demands a payment, transfer or fee",
+      "coefficient": 2.073
+    },
+    {
+      "signal": "sig_no_reply",
+      "description": "Attempts to sound official with 'do not reply / contact us' boilerplate",
+      "coefficient": 2.059
+    },
+    {
+      "signal": "sig_verify_action",
+      "description": "Tells you to verify/update/reactivate something",
+      "coefficient": 2.005
+    },
+    {
+      "signal": "sig_otp_protective",
+      "description": "Warns you NOT to share the code - a genuine safety message",
+      "coefficient": -1.665
+    },
+    {
+      "signal": "n_exclam_cap",
+      "description": "Uses exclamation marks to pressurise",
+      "coefficient": 1.578
+    },
+    {
+      "signal": "has_whatsapp_telegram",
+      "description": "Pushes you to WhatsApp/Telegram",
+      "coefficient": 1.517
+    },
+    {
+      "signal": "sig_otp_request",
+      "description": "Asks YOU to share/read the OTP, PIN, CVV or password",
+      "coefficient": 1.471
+    },
+    {
+      "signal": "sig_safety_advice",
+      "description": "Gives official anti-fraud advice (use official app, contact branch, helpline 1930)",
+      "coefficient": -1.363
+    },
+    {
+      "signal": "has_qr",
+      "description": "Asks you to scan a QR code",
+      "coefficient": 1.312
+    },
+    {
+      "signal": "sig_threat",
+      "description": "Threatens blocking, suspension, penalty, arrest or legal action",
+      "coefficient": 1.2
+    },
+    {
+      "signal": "upper_ratio",
+      "description": "Unusually uppercase text (shouting/pressure)",
+      "coefficient": 1.172
+    },
+    {
+      "signal": "sig_urgency",
+      "description": "Creates false urgency / a deadline",
+      "coefficient": 1.172
+    },
+    {
+      "signal": "has_susp_tld",
+      "description": "Link uses a cheap/disposable domain (.top, .xyz, .online, .icu ...)",
+      "coefficient": 0.954
+    },
+    {
+      "signal": "sig_personal_info",
+      "description": "Asks for personal identity data (Aadhaar/PAN/card details)",
+      "coefficient": 0.914
+    },
+    {
+      "signal": "has_email",
+      "description": "Contains an email address",
+      "coefficient": 0.885
+    },
+    {
+      "signal": "sig_impersonation",
+      "description": "Impersonates a bank, government body or company",
+      "coefficient": 0.862
+    },
+    {
+      "signal": "has_bait_domain",
+      "description": "Link domain contains bait words (kyc, verify, login, pay, reward...)",
+      "coefficient": 0.783
+    },
+    {
+      "signal": "sig_generic_greeting",
+      "description": "Uses a generic mass salutation (Dear customer/winner...)",
+      "coefficient": 0.672
+    },
+    {
+      "signal": "n_amounts",
+      "description": "Mentions money amounts",
+      "coefficient": -0.51
+    },
+    {
+      "signal": "sig_click_action",
+      "description": "Tells you to click a link",
+      "coefficient": -0.36
+    },
+    {
+      "signal": "has_brand_bait_domain",
+      "description": "Link impersonates a brand (e.g. sbi-kyc, amazon-verify) but is not the official domain",
+      "coefficient": 0.279
+    },
+    {
+      "signal": "has_shortener",
+      "description": "Link uses a URL shortener (bit.ly/tinyurl-style) that hides the destination",
+      "coefficient": 0.216
+    },
+    {
+      "signal": "has_big_money_word",
+      "description": "Talks about lakhs/crores/prize money",
+      "coefficient": -0.15
+    },
+    {
+      "signal": "has_apk_link",
+      "description": "Link points to an app file (.apk/.exe) - a classic way to plant malware",
+      "coefficient": 0.118
+    },
+    {
+      "signal": "max_amount_log",
+      "description": "Mentions a large money amount",
+      "coefficient": 0.099
+    },
+    {
+      "signal": "has_phone",
+      "description": "Contains a phone number to call or reply to",
+      "coefficient": 0.057
+    },
+    {
+      "signal": "has_ip_url",
+      "description": "Link uses a raw IP address instead of a real domain name",
+      "coefficient": 0.0
+    }
+  ]
+}

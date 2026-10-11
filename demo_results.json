@@ -1,0 +1,161 @@
+[
+  {
+    "verdict": "SCAM",
+    "confidence": 1.0,
+    "model_score": 0.9588,
+    "headline": "This message is almost certainly a fraud attempt. Do not act on it.",
+    "headline_hi": "Yeh message lagbhag pakka fraud hai. Is par koi action na lein.",
+    "red_flags": [
+      {
+        "flag": "Suspicious link",
+        "evidence": "locked immediately click http://bit.ly/kyc-upd8 and updat",
+        "why": "The message pushes you to a link. Genuine banks do not send KYC or bill links on SMS. Shortened and cheap domains (.top, .xyz) are used to hide the real website."
+      },
+      {
+        "flag": "Account / service threat",
+        "evidence": "day your account will be blocked immediately click http:/",
+        "why": "Fear and a deadline is the oldest trick in the book. Real institutions send written notice and give you time - they never threaten instant blocking in a text message."
+      },
+      {
+        "flag": "Urgency pressure",
+        "evidence": "mer your KYC is expiring today your account will be blo",
+        "why": "Manufactured urgency stops you from thinking or checking with someone. Slow down - that alone defeats most of these attacks."
+      },
+      {
+        "flag": "Impersonates bank / government",
+        "evidence": "Dear customer your KYC is expiring today your a",
+        "why": "The sender is copying a trusted name to borrow its authority. Check the actual sender ID and contact the institution on the number printed on your card or bill."
+      },
+      {
+        "flag": "Personal data harvesting",
+        "evidence": "t.ly/kyc-upd8 and update pan card details",
+        "why": "Your ID numbers and card photos are enough to open accounts and loans in your name. They are never needed over SMS or WhatsApp."
+      }
+    ],
+    "reasoning_trace": [
+      "Model scored the message at 95.9% fraud probability.",
+      "Agent matched 5 of 10 known fraud red-flag rules.",
+      "Combined verdict: SCAM at 100.0% confidence.",
+      "Strongest signals: Suspicious link, Account / service threat, Urgency pressure."
+    ],
+    "next_steps": [
+      "Do not click any link, do not scan any QR code, and do not reply to the message.",
+      "Do not share the OTP, PIN, CVV or password with anyone - not even someone claiming to be bank staff.",
+      "Verify on your own: open the bank's official app or call the number printed on your card / bill.",
+      "If money has already left your account, call the national cyber crime helpline 1930 immediately - the first 24 hours matter most.",
+      "Report the message at cybercrime.gov.in and forward it to 1909 to report the sender.",
+      "Tell one other person - a parent, neighbour or colleague - what this message looked like."
+    ],
+    "helpline": {
+      "number": "1930",
+      "portal": "cybercrime.gov.in",
+      "report_sms": "1909"
+    },
+    "name": "KYC expiry fraud",
+    "msg": "Dear customer your KYC is expiring today your account will be blocked immediately click http://bit.ly/kyc-upd8 and update pan card details"
+  },
+  {
+    "verdict": "SCAM",
+    "confidence": 0.7581,
+    "model_score": 0.6981,
+    "headline": "This message is almost certainly a fraud attempt. Do not act on it.",
+    "headline_hi": "Yeh message lagbhag pakka fraud hai. Is par koi action na lein.",
+    "red_flags": [
+      {
+        "flag": "Account / service threat",
+        "evidence": ". Join video call now or arrest warrant will be issued",
+        "why": "Fear and a deadline is the oldest trick in the book. Real institutions send written notice and give you time - they never threaten instant blocking in a text message."
+      },
+      {
+        "flag": "Impersonates bank / government",
+        "evidence": "This is CBI officer. A case has been",
+        "why": "The sender is copying a trusted name to borrow its authority. Check the actual sender ID and contact the institution on the number printed on your card or bill."
+      }
+    ],
+    "reasoning_trace": [
+      "Model scored the message at 69.8% fraud probability.",
+      "Agent matched 2 of 10 known fraud red-flag rules.",
+      "Combined verdict: SCAM at 75.8% confidence.",
+      "Strongest signals: Account / service threat, Impersonates bank / government."
+    ],
+    "next_steps": [
+      "Do not click any link, do not scan any QR code, and do not reply to the message.",
+      "Do not share the OTP, PIN, CVV or password with anyone - not even someone claiming to be bank staff.",
+      "Verify on your own: open the bank's official app or call the number printed on your card / bill.",
+      "If money has already left your account, call the national cyber crime helpline 1930 immediately - the first 24 hours matter most.",
+      "Report the message at cybercrime.gov.in and forward it to 1909 to report the sender.",
+      "Tell one other person - a parent, neighbour or colleague - what this message looked like."
+    ],
+    "helpline": {
+      "number": "1930",
+      "portal": "cybercrime.gov.in",
+      "report_sms": "1909"
+    },
+    "name": "Digital arrest fraud",
+    "msg": "This is CBI officer. A case has been registered against you for money laundering. Join video call now or arrest warrant will be issued"
+  },
+  {
+    "verdict": "LOOKS SAFE",
+    "confidence": 0.1651,
+    "model_score": 0.1651,
+    "headline": "Nothing in this message matches known fraud patterns. Stay alert anyway.",
+    "headline_hi": "Is message mein fraud ka koi jaana-pehchaana pattern nahi mila. Phir bhi saavdhan rahein.",
+    "red_flags": [],
+    "reasoning_trace": [
+      "Model scored the message at 16.5% fraud probability.",
+      "Agent matched 0 of 10 known fraud red-flag rules.",
+      "Combined verdict: LOOKS SAFE at 16.5% confidence.",
+      "No link, OTP request, threat, payment demand or prize bait was detected."
+    ],
+    "next_steps": [
+      "Do not click any link, do not scan any QR code, and do not reply to the message.",
+      "Do not share the OTP, PIN, CVV or password with anyone - not even someone claiming to be bank staff.",
+      "Verify on your own: open the bank's official app or call the number printed on your card / bill.",
+      "If money has already left your account, call the national cyber crime helpline 1930 immediately - the first 24 hours matter most.",
+      "Report the message at cybercrime.gov.in and forward it to 1909 to report the sender.",
+      "Tell one other person - a parent, neighbour or colleague - what this message looked like."
+    ],
+    "helpline": {
+      "number": "1930",
+      "portal": "cybercrime.gov.in",
+      "report_sms": "1909"
+    },
+    "name": "Genuine bank alert",
+    "msg": "Rs 1500 debited from your account on 05-09-26 to grocery store. Available balance Rs 12450."
+  },
+  {
+    "verdict": "LOOKS SAFE",
+    "confidence": 0.1592,
+    "model_score": 0.1292,
+    "headline": "Nothing in this message matches known fraud patterns. Stay alert anyway.",
+    "headline_hi": "Is message mein fraud ka koi jaana-pehchaana pattern nahi mila. Phir bhi saavdhan rahein.",
+    "red_flags": [
+      {
+        "flag": "Urgency pressure",
+        "evidence": "rcel is out for delivery today between 10am and 1pm. Ke",
+        "why": "Manufactured urgency stops you from thinking or checking with someone. Slow down - that alone defeats most of these attacks."
+      }
+    ],
+    "reasoning_trace": [
+      "Model scored the message at 12.9% fraud probability.",
+      "Agent matched 1 of 10 known fraud red-flag rules.",
+      "Combined verdict: LOOKS SAFE at 15.9% confidence.",
+      "Strongest signals: Urgency pressure."
+    ],
+    "next_steps": [
+      "Do not click any link, do not scan any QR code, and do not reply to the message.",
+      "Do not share the OTP, PIN, CVV or password with anyone - not even someone claiming to be bank staff.",
+      "Verify on your own: open the bank's official app or call the number printed on your card / bill.",
+      "If money has already left your account, call the national cyber crime helpline 1930 immediately - the first 24 hours matter most.",
+      "Report the message at cybercrime.gov.in and forward it to 1909 to report the sender.",
+      "Tell one other person - a parent, neighbour or colleague - what this message looked like."
+    ],
+    "helpline": {
+      "number": "1930",
+      "portal": "cybercrime.gov.in",
+      "report_sms": "1909"
+    },
+    "name": "Genuine delivery notice",
+    "msg": "Your parcel is out for delivery today between 10am and 1pm. Keep your phone reachable."
+  }
+]
