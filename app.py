@@ -44,7 +44,7 @@ def analyze():
 def health():
     return jsonify({
         "status": "ok",
-        "model": "Ensemble: TF-IDF (word+char) + engineered signals (LogReg) + MiniLM sentence embeddings",
+        "model": "Hybrid: TF-IDF (word+char) + engineered scam signals (LogReg)",
         "agent_rules": len(RED_FLAG_RULES),
         "engineered_signals": features.N_ENGINEERED,
         "classes": ["legitimate", "fraudulent"],
